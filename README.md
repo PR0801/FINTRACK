@@ -1,6 +1,6 @@
 # FINTRACK
 
-## Finance Tracker Backend (Flask + MySQL)
+## Python Based Finance System Backend (Flask + MySQL)
 
 ## Overview
 
