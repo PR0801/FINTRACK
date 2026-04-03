@@ -1,4 +1,6 @@
-# Finance Tracker Backend (Flask + MySQL)
+#FINTRACK
+
+##Finance Tracker Backend (Flask + MySQL)
 
 ## Overview
 
