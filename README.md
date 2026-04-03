@@ -1,85 +1,236 @@
 # FINTRACK
+# 💰 FINTRACK – Finance Tracker Backend (Flask + MySQL)
 
-## Python Based Finance System Backend (Flask + MySQL)
+## 📌 Overview
 
-## Overview
+FINTRACK is a Python-based backend system designed to manage and analyze financial records. It provides RESTful APIs to handle income and expense tracking, generate summaries, and enforce role-based access control.
 
-This project is a Python-based backend system for managing financial records. It allows users to create, manage, and analyze transactions such as income and expenses.
+This project focuses on clean backend architecture, proper data handling, and logical business implementation.
 
-## Tech Stack
+---
 
-* Python (Flask)
-* MySQL
-* mysql-connector-python
+## ⚙️ Tech Stack
 
-## Features
+* **Backend Framework:** Flask
+* **Database:** MySQL
+* **Connector:** mysql-connector-python
+* **Testing Tool:** Postman
+
+---
+
+## 🚀 Features
+
+### 🔹 Financial Records Management
 
 * Create, Read, Update, Delete (CRUD) transactions
-* Filter transactions by type, category, and date
-* Financial summary (total income, expense, balance)
-* User management with roles (Admin, Analyst, Viewer)
-* Role-based access control
-* Input validation and error handling
+* Track income and expenses
+* Categorize transactions
+* Store date and notes
 
-## API Endpoints
+### 🔹 Filtering & Search
 
-### User
+* Filter by:
 
-* POST /users → Create user
+  * Type (income/expense)
+  * Category
+  * Date
 
-### Transactions
+### 🔹 Analytics & Summary
 
-* POST /transactions → Create transaction
-* GET /transactions → Get all transactions
-* PUT /transactions/<id> → Update transaction
-* DELETE /transactions/<id> → Delete transaction
-* GET /transactions/filter → Filter transactions
+* Total Income
+* Total Expense
+* Current Balance (Income − Expense)
 
-### Analytics
+### 🔹 User & Role Management
 
-* GET /summary → Get financial summary
+* Admin → Full access (CRUD)
+* Analyst → View + Filter
+* Viewer → Read-only access
 
-## Setup Instructions
+### 🔹 Validation & Error Handling
 
-1. Install dependencies:
-   pip install -r requirements.txt
+* Input validation
+* Proper error messages
+* Role-based access restrictions
 
-2. Create MySQL database:
-   CREATE DATABASE FINTRACK;
+---
 
-3. Create tables:
-   CREATE TABLE users (
-   id INT AUTO_INCREMENT PRIMARY KEY,
-   name VARCHAR(50),
-   role VARCHAR(20)
-   );
+## 🏗️ Project Structure
 
-CREATE TABLE transactions (
-id INT AUTO_INCREMENT PRIMARY KEY,
-amount FLOAT NOT NULL,
-type VARCHAR(10),
-category VARCHAR(50),
-date VARCHAR(20),
-notes VARCHAR(200),
-user_id INT,
-FOREIGN KEY (user_id) REFERENCES users(id)
+```
+finance_app/
+├── app.py          # Entry point
+├── db.py           # Database connection
+├── routes.py       # API endpoints
+├── services.py     # Business logic
+├── requirements.txt
+```
+
+👉 The project follows a **layered architecture**:
+
+* Routes → Handle HTTP requests
+* Services → Handle business logic
+* DB → Handles database operations
+
+---
+
+## 📡 API Endpoints
+
+### 👤 User
+
+* `POST /users` → Create user
+
+---
+
+### 💰 Transactions
+
+* `POST /transactions` → Create transaction
+* `GET /transactions` → Get all transactions
+* `PUT /transactions/<id>` → Update transaction
+* `DELETE /transactions/<id>` → Delete transaction
+* `GET /transactions/filter` → Filter transactions
+
+---
+
+### 📊 Analytics
+
+* `GET /summary` → Get financial summary
+
+---
+
+## 🧪 Example Requests
+
+### ➤ Create User
+
+```json
+POST /users
+{
+  "name": "AdminUser",
+  "role": "admin"
+}
+```
+
+---
+
+### ➤ Create Transaction
+
+```json
+POST /transactions
+{
+  "amount": 5000,
+  "type": "income",
+  "category": "salary",
+  "date": "2026-04-03",
+  "user_id": 1
+}
+```
+
+---
+
+### ➤ Get Transactions
+
+```
+GET /transactions?user_id=1
+```
+
+---
+
+### ➤ Filter Transactions
+
+```
+GET /transactions/filter?type=income&user_id=2
+```
+
+---
+
+### ➤ Get Summary
+
+```
+GET /summary?user_id=1
+```
+
+---
+
+## 🗄️ Database Setup
+
+```sql
+CREATE DATABASE FINTRACK;
+USE FINTRACK;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    role VARCHAR(20)
 );
 
-4. Update database credentials in db.py
+CREATE TABLE transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    amount FLOAT NOT NULL,
+    type VARCHAR(10),
+    category VARCHAR(50),
+    date VARCHAR(20),
+    notes VARCHAR(200),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+```
 
-5. Run the application:
-   python app.py
+---
 
-## Assumptions
+## ⚙️ Setup Instructions
 
-* Authentication is simplified (user_id passed in request)
+1. Clone the repository
+2. Install dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+3. Configure MySQL credentials in `db.py`
+
+4. Run the server:
+
+```
+python app.py
+```
+
+5. Test APIs using Postman
+
+---
+
+## 🧠 Design Approach
+
+The application follows a modular and layered architecture where:
+
+* Routes handle incoming API requests
+* Services encapsulate business logic
+* Database layer manages persistence
+
+This ensures clean code, maintainability, and separation of concerns.
+
+---
+
+## ⚠️ Assumptions
+
+* Authentication is simplified using `user_id`
 * Dates are stored as strings
 * Roles are predefined (admin, analyst, viewer)
 
-## Testing
+---
 
-Use Postman to test all endpoints.
+## 🧪 Testing
 
-## Author
+All endpoints are tested using Postman.
+Role-based access is verified for different user types.
 
-Pratyush Raunak
+---
+
+## 👨‍💻 Author
+
+**Pratyush Raunak**
+
+---
+
+## 📌 Note
+
+This project is developed as part of a backend assessment to demonstrate Python development skills, API design, and system architecture.
