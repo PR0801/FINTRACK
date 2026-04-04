@@ -1,11 +1,12 @@
-# FINTRACK
-# FINTRACK – Finance Tracker Backend (Flask + MySQL)
+# 💰 FINTRACK – Finance Tracker Backend (Flask + MySQL)
 
 ## 📌 Overview
 
 FINTRACK is a Python-based backend system designed to manage and analyze financial records. It provides RESTful APIs to handle income and expense tracking, generate summaries, and enforce role-based access control.
 
 This project focuses on clean backend architecture, proper data handling, and logical business implementation.
+
+The backend is designed to be easily integrable with any frontend client such as React, Angular, or mobile applications.
 
 ---
 
@@ -74,7 +75,7 @@ finance_app/
 
 ---
 
-## 📡 API Endpoints
+## 📡 API Overview
 
 ### 👤 User
 
@@ -224,6 +225,7 @@ All endpoints are tested using Postman.
 Role-based access is verified for different user types.
 
 ---
+
 ## 📡 API Documentation
 
 ### Base URL
@@ -304,18 +306,6 @@ Response:
 
 **GET /transactions/filter?type=income&user_id=2**
 
-Response:
-
-```json
-[
-  {
-    "id": 1,
-    "amount": 5000,
-    "type": "income"
-  }
-]
-```
-
 ---
 
 ## 📊 Get Summary
@@ -350,6 +340,8 @@ Response:
 * 400 → Bad Request
 * 403 → Forbidden
 * 500 → Server Error
+
+---
 
 ## 👨‍💻 Author
 
