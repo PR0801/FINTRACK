@@ -224,6 +224,132 @@ All endpoints are tested using Postman.
 Role-based access is verified for different user types.
 
 ---
+## 📡 API Documentation
+
+### Base URL
+
+http://127.0.0.1:5000/
+
+---
+
+## 👤 Create User
+
+**POST /users**
+
+Request:
+
+```json
+{
+  "name": "AdminUser",
+  "role": "admin"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "User created"
+}
+```
+
+---
+
+## 💰 Create Transaction
+
+**POST /transactions**
+
+Request:
+
+```json
+{
+  "amount": 5000,
+  "type": "income",
+  "category": "salary",
+  "date": "2026-04-03",
+  "user_id": 1
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Transaction created"
+}
+```
+
+---
+
+## 📖 Get Transactions
+
+**GET /transactions?user_id=1**
+
+Response:
+
+```json
+[
+  {
+    "id": 1,
+    "amount": 5000,
+    "type": "income",
+    "category": "salary"
+  }
+]
+```
+
+---
+
+## 🔍 Filter Transactions
+
+**GET /transactions/filter?type=income&user_id=2**
+
+Response:
+
+```json
+[
+  {
+    "id": 1,
+    "amount": 5000,
+    "type": "income"
+  }
+]
+```
+
+---
+
+## 📊 Get Summary
+
+**GET /summary?user_id=1**
+
+Response:
+
+```json
+{
+  "total_income": 5000,
+  "total_expense": 0,
+  "balance": 5000
+}
+```
+
+---
+
+## ⚠️ Error Responses
+
+```json
+{ "error": "Invalid user" }
+{ "error": "Only admin can create" }
+{ "error": "Access denied" }
+```
+
+---
+
+## 📌 Status Codes
+
+* 200 → Success
+* 400 → Bad Request
+* 403 → Forbidden
+* 500 → Server Error
 
 ## 👨‍💻 Author
 
